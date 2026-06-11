@@ -69,7 +69,7 @@ RUN cd /root && \
 
 # QEMU-FUZZ
 RUN cd /root && \
-    git clone https://github.com/VoodooChild99/qemu-system-fuzzing.git && \
+    git clone https://github.com/perry-emu/qemu-system-fuzzing.git && \
     cd qemu-system-fuzzing && chmod +x qemu-config.sh && \
     ./qemu-config.sh && cd build && make -j$(nproc)
 
@@ -84,18 +84,18 @@ RUN cd /root && \
 
 # Perry Artifacts
 RUN cd /root && \
-    git clone https://github.com/VoodooChild99/perry-experiments.git
+    git clone https://github.com/perry-emu/perry-experiments.git
 
 # Perry Clang plugin
 RUN cd /root && \
-    git clone https://github.com/VoodooChild99/perry-clang-plugin && \
+    git clone https://github.com/perry-emu/perry-clang-plugin && \
     cd perry-clang-plugin && \
     LLVM_CONFIG=llvm-config-13 ./cmake-config.sh && \
     cd build && make -j$(nproc)
 
 # Perry
 RUN cd /root && \
-    git clone https://github.com/VoodooChild99/perry.git && \
+    git clone https://github.com/perry-emu/perry.git && \
     cd perry && git checkout master && \
     LLVM_CONFIG=llvm-config-13 Z3_INSTALL_PATH=/usr/local ./cmake-config.sh && \
     cd build && make -j$(nproc) && \
@@ -103,7 +103,7 @@ RUN cd /root && \
 
 # Drivers
 RUN cd /root && \
-    git clone https://github.com/VoodooChild99/perry-drivers.git HAL-Collection && \
+    git clone https://github.com/perry-emu/perry-drivers.git HAL-Collection && \
     cd HAL-Collection && \
     PERRY_DIR=/root/perry PERRY_CLANG_PATH=/root/perry-clang-plugin/build/compiler LLVM_CONFIG=llvm-config-13 ./build_all.sh
 
